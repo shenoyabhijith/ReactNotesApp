@@ -1,10 +1,9 @@
 # __React Notes app__
 
 
-### I have used react js along with materialize css 
-#### *features user is able to add new notes
-#### *user can edit the notes
-#### *user can delete or remove the notes
+# This is an <h1> tag
+## This is an <h2> tag
+###### This is an <h6> tag
 
 
 _Follow the link to see the demo_
