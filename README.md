@@ -8,10 +8,21 @@ __Several features of this app__
 * user can remove a note
 
 __screenshots of the app__
+
+
 ![screenshot 95](https://user-images.githubusercontent.com/20316494/27772417-8d39038c-5f7f-11e7-8131-2b481e668155.png)
 
-* edit
+
 ![screenshot 96](https://user-images.githubusercontent.com/20316494/27772423-be30a210-5f7f-11e7-96e8-c20f17f405eb.png)
+
+
+* edit
+
+
+
+
+
+
 
 This is a simple note taking app using react js and Materialize framwork
 
