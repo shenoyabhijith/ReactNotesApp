@@ -1,4 +1,4 @@
-# __React Notes app__
+# __React Notes app__ #
 
 
 # This is an <h1> tag
