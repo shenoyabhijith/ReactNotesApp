@@ -1,0 +1,99 @@
+var Comment = React.createClass({
+  
+  getInitialState: function(){
+    return {editing:false}
+  },
+  edit:function(){
+    this.setState({editing:true});
+  },
+  remove:function(){
+    console.log("removing comments");
+    this.props.deleteFromBoard(this.props.index)
+  },
+  save:function(){
+    var val = this.refs.newtext.value;
+    this.props.updateCommentText(val,this.props.index)
+     this.setState({editing:false});
+  },
+  renderNormal:function(){
+    return (
+     <div className="commentContainer">
+        <center>
+         <div className="commentText"> {this.props.children}</div>    
+         <button onClick={this.edit}  className="waves-effect waves-light btn red darken-4"> edit</button>
+         <button onClick={this.remove} className="waves-effect waves-light btn cyan lighten-2"> Remove</button>
+        </center>  
+    </div>
+    );
+  },
+ renderForm:function(){
+    return (
+     <div className="commentContainer">
+        <center>
+          <div className="commentText"> 
+            <textarea ref="newtext" defaultValue={this.props.children}></textarea></div>    
+         <button onClick={this.save}  className="waves-effect waves-light btn">Save</button>
+  
+        </center>  
+    </div>
+    );
+  },
+  render:function(){
+        if(this.state.editing)
+     return this.renderForm();
+         else
+     return this.renderNormal();  
+  }
+});
+var Board = React.createClass({
+  getInitialState : function(){
+    return{
+           comments:[]
+           
+      }
+  },
+  add:function(text){
+     var arr = this.state.comments;
+     arr.push(text);
+     this.setState({comments:arr})
+  },
+  //deleting comments
+  removeComment:function(i){
+    console.log("removing comment: " + i);
+    var arr = this.state.comments;
+    arr.splice(i,1);
+    this.setState({comments:arr})
+  },
+  //updating comments when edit button is clicked
+  updateComment:function(newtext , i){
+    console.log("updating comment");
+    var arr = this.state.comments;
+    arr[i] = newtext;
+    this.setState({comments : arr})
+    
+  },
+  //Keeping the index of each comment
+  eachComment:function(text,i){
+                return (
+                  <Comment key={i} index={i} updateCommentText={this.updateComment} deleteFromBoard={this.removeComment}>
+                    {text}
+                  </Comment>
+                );   
+  },
+  render:function(){
+  return(
+          <div>
+            <center>
+            <button onClick={this.add.bind(null,'Edit Note')} className="btn">Add Notes</button>
+            </center> 
+            <div className="board">{
+            this.state.comments.map(this.eachComment)}
+            </div>
+          </div>
+      );
+    
+      }
+});
+
+
+ReactDOM.render(<Board/>,document.getElementById('content'));
